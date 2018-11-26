@@ -1,14 +1,13 @@
-var path = require('path');
+const path = require('path');
 
 module.exports = {
-  entry: './lib/relative-date.js',
+  entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'relative-date.js'
-  },
-  devServer: {
-    contentBase: './sample',
-    hot: true
+    filename: 'relative-date.js',
+    library: 'relativeDate',
+    libraryTarget: 'umd',
+    globalObject: 'this'
   },
   module: {
     rules: [

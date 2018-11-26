@@ -2,11 +2,11 @@
   "name": "relative-date",
   "version": "1.0.0",
   "description": "Micro library for creating relative date outputs",
-  "main": "index.js",
-  "directories": {
-    "lib": "lib",
-    "test": "test"
-  },
+  "main": "dist/relative-date.js",
+  "files": [
+    "src",
+    "dist/*.js"
+  ],
   "scripts": {
     "build": "webpack --progress --mode=development",
     "lint": "eslint --fix --ignore-path .gitignore .",

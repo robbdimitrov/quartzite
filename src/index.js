@@ -11,7 +11,7 @@ const weekDays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday',
 
 // Modifiers
 
-function dateByAdding(type, date, value) {
+export function dateByAdding(type, date, value) {
   let nextDate = new Date(date);
 
   switch (type) {
@@ -55,7 +55,7 @@ function pluralFormatter(number, singular, plural) {
 
 // Time difference
 
-function timeDifference(now, date) {
+export function timeDifference(now, date) {
   let seconds = Math.round((now - date) / 1000);
   let minutes = Math.round(seconds / 60);
   let hours = Math.round(minutes / 60);
@@ -74,7 +74,7 @@ function timeDifference(now, date) {
   }
 }
 
-function dateDifference(now, date) {
+export function dateDifference(now, date) {
   let isCurrent = now.getFullYear() === date.getFullYear() && now.getMonth() === date.getMonth();
 
   if (isCurrent && now.getDate() === date.getDate()) {
@@ -92,7 +92,7 @@ function dateDifference(now, date) {
 
 // Relativity
 
-export default function relativeDate(date) {
+export function relativeDate(date) {
   let now = new Date();
 
   if (now < dateByAdding('days', date, 1)) {
