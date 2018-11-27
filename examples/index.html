@@ -13,6 +13,11 @@
       <span>Relative Date:</span>
       <span class="relative-date"></span>
     </div>
-    <script type="module" src="script.js"></script>
+    <script src="relative-date.js"></script>
+    <script type='text/javascript' >
+      let date = new Date();
+      document.querySelector('.date').innerHTML = date;
+      document.querySelector('.relative-date').innerHTML = relativeDate.formatDate(date);
+    </script>
   </body>
 </html>
