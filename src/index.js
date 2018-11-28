@@ -7,10 +7,17 @@ module.exports = function() {
     'May', 'June', 'July', 'August',
     'September', 'October', 'November', 'December'];
 
+  const shortMonths = ['Jan', 'Feb', 'Mar', 'Apr', 'May',
+    'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
+
   const weekDays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday',
     'Thursday', 'Friday', 'Saturday'];
 
   // Modifiers
+
+  //
+  // type can be: 'days', 'hours', 'minutes', 'seconds'
+  //
 
   function dateByAdding(type, date, value) {
     let nextDate = new Date(date);
@@ -25,14 +32,27 @@ module.exports = function() {
     case 'minutes':
       nextDate.setMinutes(date.getMinutes() + value);
       break;
-    case 'seconds':
-      nextDate.setSeconds(date.getSeconds() + value);
-      break;
     default:
       nextDate.setSeconds(date.getSeconds() + value);
     }
 
     return nextDate;
+  }
+
+  // Formats
+
+  function monthDateFormat(date, style) {
+    if (style === 'compact') {
+      return `${shortMonths[date.getMonth()]} ${date.getDate()}`;
+    }
+    return `${months[date.getMonth()]} ${date.getDate()}`;
+  }
+
+  function yearDateFormat(date, style) {
+    if (style === 'compact') {
+      return `${date.getDate()} ${shortMonths[date.getMonth()]} ${date.getFullYear()}`;
+    }
+    return `${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
   }
 
   // Helpers
@@ -56,11 +76,23 @@ module.exports = function() {
 
   // Time difference
 
-  function timeDifference(now, date) {
+  function timeDifference(now, date, style = 'normal') {
     let seconds = Math.round((now - date) / 1000);
     let minutes = Math.round(seconds / 60);
     let hours = Math.round(minutes / 60);
     let days = Math.round(hours / 24);
+
+    if (style === 'compact') {
+      if (seconds < 60) {
+        return `${seconds}s`;
+      } else if (minutes < 60) {
+        return `${minutes}m`;
+      } else if (hours < 24) {
+        return `${hours}h`;
+      } else {
+        return `${days}d`;
+      }
+    }
 
     if (seconds < 5) {
       return 'Just now';
@@ -75,8 +107,12 @@ module.exports = function() {
     }
   }
 
-  function dateDifference(now, date) {
+  function dateDifference(now, date, style = 'normal') {
     let isCurrent = now.getFullYear() === date.getFullYear() && now.getMonth() === date.getMonth();
+
+    if (style === 'compact') {
+      return `${shortMonths[date.getMonth()]} ${date.getDate()}`;
+    }
 
     if (isCurrent && now.getDate() === date.getDate()) {
       return `Today at ${timeFormatter(date)}`;
@@ -93,18 +129,22 @@ module.exports = function() {
 
   // Relativity
 
-  function formatDate(date) {
+  //
+  // style options: 'normal', 'compact'
+  //
+
+  function formatDate(date, style = 'normal') {
     let now = new Date();
 
     if (now < dateByAdding('days', date, 1)) {
-      return timeDifference(now, date);
+      return timeDifference(now, date, style);
     } else if (now < dateByAdding('days', date, 7)) {
-      return dateDifference(now, date);
-    } else if (now.getFullYear === date.getFullYear) {
-      return `${months[date.getMonth()]} ${date.getDate()}`;
+      return dateDifference(now, date, style);
+    } else if (now.getFullYear() === date.getFullYear()) {
+      return monthDateFormat(date, style);
     }
 
-    return `${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
+    return yearDateFormat(date, style);
   }
 
   return {

@@ -6,18 +6,45 @@
   </head>
   <body>
     <div>
-      <span>JS Date:</span>
-      <span class="date"></span>
+      <span>Relative date formats</span>
     </div>
-    <div>
-      <span>Relative Date:</span>
-      <span class="relative-date"></span>
-    </div>
+
+    <br />
+
+    <div class="container-normal">Normal:</div>
+    <div class="container-compact">Compact:</div>
+
     <script src="relative-date.js"></script>
-    <script type='text/javascript' >
+
+    <script type="text/javascript" >
       let date = new Date();
-      document.querySelector('.date').innerHTML = date;
-      document.querySelector('.relative-date').innerHTML = relativeDate.formatDate(date);
+
+      let dates = [
+        relativeDate.dateByAdding('seconds', date, -2),
+        relativeDate.dateByAdding('seconds', date, -25),
+        relativeDate.dateByAdding('minutes', date, -30),
+        relativeDate.dateByAdding('hours', date, -18),
+        relativeDate.dateByAdding('hours', date, -40),
+        relativeDate.dateByAdding('days', date, -400)
+      ];
+
+      let normalUl = document.createElement('ul');
+      let compactUl = document.createElement('ul');
+
+      for (value of dates) {
+        let normalLi = document.createElement('li');
+        let dateString = relativeDate.formatDate(value);
+        normalLi.appendChild(document.createTextNode(dateString));
+        normalUl.appendChild(normalLi);
+
+        let compactLi = document.createElement('li');
+        dateString = relativeDate.formatDate(value, 'compact');
+        compactLi.appendChild(document.createTextNode(dateString));
+        compactUl.appendChild(compactLi);
+      }
+
+      document.querySelector('.container-normal').appendChild(normalUl);
+      document.querySelector('.container-compact').appendChild(compactUl);
     </script>
   </body>
 </html>
