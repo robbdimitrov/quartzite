@@ -20,6 +20,6 @@
 
 ### System configuration
 
-RelativeDate version:
+Quartzite version:
 NPM version:
 Affected browsers:

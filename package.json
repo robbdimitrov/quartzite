@@ -1,23 +1,31 @@
 {
-  "name": "relative-date",
-  "version": "1.0.0",
+  "name": "quartzite",
+  "version": "1.0.0-alpha.1",
   "description": "Micro library for creating relative date outputs",
-  "main": "dist/relative-date.js",
+  "main": "dist/quartzite.js",
   "files": [
-    "src",
     "dist/*.js"
+  ],
+  "keywords": [
+    "micro",
+    "relative",
+    "date",
+    "time",
+    "format",
+    "human-readable",
+    "timestamp"
   ],
   "scripts": {
     "build": "webpack --progress --mode=production",
-    "build:dev": "webpack --progress --mode=development",
+    "dev": "webpack --progress --mode=development",
     "start": "webpack-dev-server --mode=development",
     "lint": "eslint src/*.js"
   },
-  "author": "Robert Dimitrov",
+  "author": "Robert Dimitrov <robert_dimitrov@me.com>",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/robbdimitrov/relative-date.git"
+    "url": "https://github.com/robbdimitrov/quartzite.git"
   },
   "devDependencies": {
     "@babel/core": "^7.1.6",

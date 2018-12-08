@@ -14,18 +14,18 @@
     <div class="container-normal">Normal:</div>
     <div class="container-compact">Compact:</div>
 
-    <script src="relative-date.js"></script>
+    <script src="quartzite.js"></script>
 
     <script>
       let date = new Date();
 
       let dates = [
-        relativeDate.dateByAdding('seconds', date, -2),
-        relativeDate.dateByAdding('seconds', date, -25),
-        relativeDate.dateByAdding('minutes', date, -30),
-        relativeDate.dateByAdding('hours', date, -18),
-        relativeDate.dateByAdding('hours', date, -40),
-        relativeDate.dateByAdding('days', date, -400)
+        quartzite.dateByAdding('seconds', date, -2),
+        quartzite.dateByAdding('seconds', date, -25),
+        quartzite.dateByAdding('minutes', date, -30),
+        quartzite.dateByAdding('hours', date, -18),
+        quartzite.dateByAdding('hours', date, -40),
+        quartzite.dateByAdding('days', date, -400)
       ];
 
       let normalUl = document.createElement('ul');
@@ -33,12 +33,12 @@
 
       for (value of dates) {
         let normalLi = document.createElement('li');
-        let dateString = relativeDate.formatDate(value);
+        let dateString = quartzite.formatDate(value);
         normalLi.appendChild(document.createTextNode(dateString));
         normalUl.appendChild(normalLi);
 
         let compactLi = document.createElement('li');
-        dateString = relativeDate.formatDate(value, 'compact');
+        dateString = quartzite.formatDate(value, 'short');
         compactLi.appendChild(document.createTextNode(dateString));
         compactUl.appendChild(compactLi);
       }

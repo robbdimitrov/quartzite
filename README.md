@@ -1,8 +1,15 @@
-# Relative-Date.js
+# Quartzite
+
+Lightweight relative date/time formatter without external dependencies.
 
 ## Instlall
 
 ## Usage
+
+## Roadmap
+
+- L10n and i18n
+- Future dates
 
 ## Contact
 

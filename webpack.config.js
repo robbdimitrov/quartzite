@@ -5,10 +5,11 @@ module.exports = {
     devtool: 'source-map',
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: 'relative-date.js',
-        library: 'relativeDate',
+        filename: 'quartzite.js',
+        library: 'quartzite',
         libraryTarget: 'umd',
-        globalObject: 'this'
+        globalObject: 'this',
+        umdNamedDefine: true
     },
     devServer: {
         contentBase: [
