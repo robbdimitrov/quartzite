@@ -3,3 +3,5 @@ Thumbs.db
 .vscode
 node_modules
 package-lock.json
+yarn.lock
+dist
