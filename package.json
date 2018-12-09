@@ -6,6 +6,7 @@
   "license": "MIT",
   "main": "dist/quartzite.js",
   "types": "types/quartzite.d.ts",
+  "unpkg": "dist/quartzite.js",
   "files": [
     "dist/*.js",
     "types/*.d.ts"
