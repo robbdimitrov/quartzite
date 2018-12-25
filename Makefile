@@ -1,8 +1,23 @@
-.PHONY: setup build clean
+.PHONY: setup build lint test clean
 
 setup:
-	npm install --no-optional
+	@echo "Downloading dependencies..."
+	@npm install --no-optional
+
 build:
-	npm run build
+	@echo "Building..."
+	@npm run build
+
+lint:
+	@echo "Linting..."
+	@npm run lint
+
+test:
+	@echo "Running tests..."
+	@npm test
+
 clean:
-	rm -f dist/*.js
+	@echo "Cleaning up..."
+	@rm -f dist/*.js
+
+all: setup lint test build
