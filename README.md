@@ -9,7 +9,6 @@ Lightweight relative date/time formatter without external dependencies.
 ## Roadmap
 
 - L10n and i18n
-- Future dates
 
 ## Contact
 

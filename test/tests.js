@@ -1,11 +1,20 @@
 'use strict';
 
-var assert = require('assert');
+const assert = require('assert');
+const quartzite = require('../dist/quartzite');
 
-describe('Array', function() {
-    describe('#indexOf()', function() {
-        it('should return -1 when the value is not present', function() {
-            assert.equal([1,2,3].indexOf(4), -1);
+describe('Quartzite', function() {
+    describe('#formatDate()', function() {
+        it('should return "Just now" for dates within 5 seconds', function() {
+            assert.equal(quartzite.formatDate(new Date()), 'Just now');
+        });
+        it('should contain "Yesterday"', function() {
+            let date = quartzite.dateByAdding('hours', new Date(), -25);
+            assert.equal(quartzite.formatDate(date).includes('Yesterday'), true);
+        });
+        it('should contain "Tomorrow"', function() {
+            let date = quartzite.dateByAdding('hours', new Date(), 25);
+            assert.equal(quartzite.formatDate(date).includes('Tomorrow'), true);
         });
     });
 });

@@ -38,6 +38,20 @@ export function dateByAdding(type, date, value) {
     return nextDate;
 }
 
+export function difference(date1, date2) {
+    let seconds = Math.round(Math.abs(date1 - date2) / 1000);
+    let minutes = Math.round(seconds / 60);
+    let hours = Math.round(minutes / 60);
+    let days = Math.round(hours / 24);
+
+    return {
+        seconds,
+        minutes,
+        hours,
+        days
+    };
+}
+
 // Formats
 
 function monthDateFormat(date, style) {
@@ -70,40 +84,43 @@ function timeFormatter(date) {
 }
 
 function pluralFormatter(number, singular, plural) {
-    return `${number} ${number === 1 ? singular : plural} ago`;
+    return `${number} ${number === 1 ? singular : plural}`;
 }
 
 // Time difference
 
 export function timeDifference(now, date, style = 'normal') {
-    let seconds = Math.round((now - date) / 1000);
-    let minutes = Math.round(seconds / 60);
-    let hours = Math.round(minutes / 60);
-    let days = Math.round(hours / 24);
+    let { seconds, minutes, hours, days } = difference(now, date);
+
+    if (style === 'normal' && seconds < 5) {
+        return 'Just now';
+    }
+
+    let result = '';
 
     if (style === 'short') {
         if (seconds < 60) {
-            return `${seconds}s`;
+            result = `${seconds}s`;
         } else if (minutes < 60) {
-            return `${minutes}m`;
+            result = `${minutes}m`;
         } else if (hours < 24) {
-            return `${hours}h`;
+            result = `${hours}h`;
         } else {
-            return `${days}d`;
+            result = `${days}d`;
+        }
+    } else {
+        if (seconds < 60) {
+            result = pluralFormatter(seconds, 'second', 'seconds');
+        } else if (minutes < 60) {
+            result = pluralFormatter(minutes, 'minute', 'minutes');
+        } else if (hours < 24) {
+            result = pluralFormatter(hours, 'hour', 'hours');
+        } else {
+            result = pluralFormatter(days, 'day', 'days');
         }
     }
 
-    if (seconds < 5) {
-        return 'Just now';
-    } else if (seconds < 60) {
-        return pluralFormatter(seconds, 'second', 'seconds');
-    } else if (minutes < 60) {
-        return pluralFormatter(minutes, 'minute', 'minutes');
-    } else if (hours < 24) {
-        return pluralFormatter(hours, 'hour', 'hours');
-    } else {
-        return pluralFormatter(days, 'day', 'days');
-    }
+    return `${now < date ? 'In ' : ''}${result}${now > date ? ' ago' : ''}`;
 }
 
 export function dateDifference(now, date, style = 'normal') {
@@ -135,10 +152,11 @@ export function dateDifference(now, date, style = 'normal') {
 
 export function formatDate(date, style = 'normal') {
     let now = new Date();
+    let { days } = difference(now, date);
 
-    if (now < dateByAdding('days', date, 1)) {
+    if (days < 1) {
         return timeDifference(now, date, style);
-    } else if (now < dateByAdding('days', date, 7)) {
+    } else if (days < 7) {
         return dateDifference(now, date, style);
     } else if (now.getFullYear() === date.getFullYear()) {
         return monthDateFormat(date, style);
