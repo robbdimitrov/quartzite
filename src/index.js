@@ -109,8 +109,11 @@ function difference(date1, date2) {
  * @returns {boolean}
  */
 function isSameWeek(date1, date2) {
-    let weekStart = dateByAdding('days', date1, -7);
-    return (date2 >= weekStart && date2 <= date1);
+    let weekStart = dateByAdding('days', date1, -date1.getDay());
+    weekStart.setHours(0, 0, 0);
+    let weekEnd = dateByAdding('days', date1, 6 - date1.getDay());
+    weekEnd.setHours(23, 59, 59);
+    return (date2 >= weekStart && date2 <= weekEnd);
 }
 
 /**
@@ -166,7 +169,11 @@ export function timeDifference(now, date, style = 'normal') {
         }
     }
 
-    return `${now < date ? 'In ' : ''}${result}${now > date ? ' ago' : ''}`;
+    result = `${now < date ? 'In ' : ''}${result}`;
+    if (style === 'normal' && now > date) {
+        result = result + ' ago';
+    }
+    return result;
 }
 
 /**

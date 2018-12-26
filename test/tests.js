@@ -9,7 +9,7 @@ describe('Quartzite', function() {
             assert.equal(quartzite.formatDate(new Date()), 'Just now');
         });
         it('should contain "Yesterday at"', function() {
-            let date = quartzite.dateByAdding('hours', new Date(), -25);
+            let date = quartzite.dateByAdding('hours', new Date(), -24);
             assert.equal(quartzite.formatDate(date).includes('Yesterday at'), true);
         });
         it('should contain "Tomorrow at"', function() {
