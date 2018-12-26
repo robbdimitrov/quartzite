@@ -141,7 +141,7 @@ export function dateDifference(now, date, style = 'normal') {
         return `${weekDays[date.getDay()]} at ${timeFormatter(date)}`;
     }
 
-    return date.toDateString();
+    return yearDateFormat(date, style);
 }
 
 // Relativity

@@ -3,16 +3,25 @@
   <head>
     <meta charset="utf-8">
     <title>Relative Date</title>
+    <style>
+      .dates-list-normal,
+      .dates-list-compact {
+        width: 200px;
+        display: inline-block;
+      }
+    </style>
   </head>
   <body>
-    <div>
-      <span>Relative date formats</span>
+    <div class="container">
+        <div>
+            <h1>Relative date formats</h1>
+        </div>
+
+        <br />
+
+        <div class="dates-list-normal">Normal:</div>
+        <div class="dates-list-compact">Compact:</div>
     </div>
-
-    <br />
-
-    <div class="container-normal">Normal:</div>
-    <div class="container-compact">Compact:</div>
 
     <script src="quartzite.js"></script>
 
@@ -27,7 +36,6 @@
         quartzite.dateByAdding('hours', date, -40),
         quartzite.dateByAdding('days', date, -5),
         quartzite.dateByAdding('days', date, -400),
-        quartzite.dateByAdding('seconds', date, 2),
         quartzite.dateByAdding('seconds', date, 25),
         quartzite.dateByAdding('minutes', date, 30),
         quartzite.dateByAdding('hours', date, 18),
@@ -51,8 +59,8 @@
         compactUl.appendChild(compactLi);
       }
 
-      document.querySelector('.container-normal').appendChild(normalUl);
-      document.querySelector('.container-compact').appendChild(compactUl);
+      document.querySelector('.dates-list-normal').appendChild(normalUl);
+      document.querySelector('.dates-list-compact').appendChild(compactUl);
     </script>
   </body>
 </html>
