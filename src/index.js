@@ -38,21 +38,7 @@ export function dateByAdding(type, date, value) {
     return nextDate;
 }
 
-export function difference(date1, date2) {
-    let seconds = Math.round(Math.abs(date1 - date2) / 1000);
-    let minutes = Math.round(seconds / 60);
-    let hours = Math.round(minutes / 60);
-    let days = Math.round(hours / 24);
-
-    return {
-        seconds,
-        minutes,
-        hours,
-        days
-    };
-}
-
-// Formats
+// Formatters
 
 function monthDateFormat(date, style) {
     if (style === 'short') {
@@ -68,22 +54,36 @@ function yearDateFormat(date, style) {
     return `${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
 }
 
+function timeFormat(date) {
+    return `${numberFormat(date.getHours())}:${numberFormat(date.getMinutes())}`;
+}
+
+function numberFormat(number) {
+    return `${number < 10 ? '0' : ''}${number}`;
+}
+
 // Helpers
+
+function difference(date1, date2) {
+    let seconds = Math.round(Math.abs(date1 - date2) / 1000);
+    let minutes = Math.round(seconds / 60);
+    let hours = Math.round(minutes / 60);
+    let days = Math.round(hours / 24);
+
+    return {
+        seconds,
+        minutes,
+        hours,
+        days
+    };
+}
 
 function isSameWeek(date1, date2) {
     let weekStart = dateByAdding('days', date1, -7);
     return (date2 >= weekStart && date2 <= date1);
 }
 
-function numberFormatter(number) {
-    return `${number < 10 ? '0' : ''}${number}`;
-}
-
-function timeFormatter(date) {
-    return `${numberFormatter(date.getHours())}:${numberFormatter(date.getMinutes())}`;
-}
-
-function pluralFormatter(number, singular, plural) {
+function pluralize(number, singular, plural) {
     return `${number} ${number === 1 ? singular : plural}`;
 }
 
@@ -110,13 +110,13 @@ export function timeDifference(now, date, style = 'normal') {
         }
     } else {
         if (seconds < 60) {
-            result = pluralFormatter(seconds, 'second', 'seconds');
+            result = pluralize(seconds, 'second', 'seconds');
         } else if (minutes < 60) {
-            result = pluralFormatter(minutes, 'minute', 'minutes');
+            result = pluralize(minutes, 'minute', 'minutes');
         } else if (hours < 24) {
-            result = pluralFormatter(hours, 'hour', 'hours');
+            result = pluralize(hours, 'hour', 'hours');
         } else {
-            result = pluralFormatter(days, 'day', 'days');
+            result = pluralize(days, 'day', 'days');
         }
     }
 
@@ -132,13 +132,13 @@ export function dateDifference(now, date, style = 'normal') {
     }
 
     if (isCurrent && now.getDate() === date.getDate()) {
-        return `Today at ${timeFormatter(date)}`;
+        return `Today at ${timeFormat(date)}`;
     } else if (isCurrent && (now.getDate() - 1) === date.getDate()) {
-        return `Yesterday at ${timeFormatter(date)}`;
+        return `Yesterday at ${timeFormat(date)}`;
     } else if (isCurrent && (now.getDate() + 1) === date.getDate()) {
-        return `Tomorrow at ${timeFormatter(date)}`;
+        return `Tomorrow at ${timeFormat(date)}`;
     } else if (isSameWeek(now, date)) {
-        return `${weekDays[date.getDay()]} at ${timeFormatter(date)}`;
+        return `${weekDays[date.getDay()]} at ${timeFormat(date)}`;
     }
 
     return yearDateFormat(date, style);
