@@ -20,4 +20,4 @@ clean:
 	@echo "Cleaning up..."
 	@rm -f dist/*.js
 
-all: setup lint test build
+all: setup lint build test

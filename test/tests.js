@@ -13,7 +13,7 @@ describe('Quartzite', function() {
             assert.equal(quartzite.formatDate(date).includes('Yesterday at'), true);
         });
         it('should contain "Tomorrow at"', function() {
-            let date = quartzite.dateByAdding('hours', new Date(), 25);
+            let date = quartzite.dateByAdding('hours', new Date(), 24);
             assert.equal(quartzite.formatDate(date).includes('Tomorrow at'), true);
         });
         it('should return "30 seconds ago"', function() {

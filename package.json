@@ -1,7 +1,7 @@
 {
   "name": "quartzite",
   "version": "1.0.0-alpha.1",
-  "description": "Micro library for creating relative date outputs",
+  "description": "Lightweight relative date/time formatter without external dependencies.",
   "author": "Robert Dimitrov <robert_dimitrov@me.com>",
   "license": "MIT",
   "main": "dist/quartzite.js",
