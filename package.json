@@ -1,6 +1,6 @@
 {
   "name": "quartzite",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Lightweight relative date/time formatter without external dependencies.",
   "author": "Robert Dimitrov <robert_dimitrov@me.com>",
   "license": "MIT",

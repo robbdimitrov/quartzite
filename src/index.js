@@ -141,8 +141,8 @@ function pluralize(number, singular, plural) {
 export function timeDifference(now, date, style = 'normal') {
     let { days, hours, minutes, seconds } = difference(now, date);
 
-    if (style === 'normal' && seconds < 5) {
-        return 'Just now';
+    if (seconds < 5) {
+        return style === 'normal' ? 'Just now' : 'now';
     }
 
     let result = '';
