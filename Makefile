@@ -18,6 +18,6 @@ test:
 
 clean:
 	@echo "Cleaning up..."
-	@rm -f dist/*.js
+	@rm -rf dist/*.js node_modules package-lock.json
 
 all: setup lint build test
