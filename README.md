@@ -41,10 +41,6 @@ console.log(quartzite.formatDate(someday, 'normal'));
 console.log(quartzite.formatDate(someday, 'short'));
 ```
 
-## Roadmap
-
-- L10n and i18n
-
 ## License
 
 Licensed under the [MIT](LICENSE) License.
