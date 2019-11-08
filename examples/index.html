@@ -17,8 +17,6 @@
             <h1>Relative date formats</h1>
         </div>
 
-        <br />
-
         <div class="dates-list-normal">Normal:</div>
         <div class="dates-list-compact">Compact:</div>
     </div>
@@ -26,9 +24,9 @@
     <script src="quartzite.js"></script>
 
     <script>
-      let date = new Date();
+      const date = new Date();
 
-      let dates = [
+      const dates = [
         quartzite.dateByAdding('seconds', date, -2),
         quartzite.dateByAdding('seconds', date, -25),
         quartzite.dateByAdding('minutes', date, -30),
@@ -44,16 +42,16 @@
         quartzite.dateByAdding('days', date, 400)
       ];
 
-      let normalUl = document.createElement('ul');
-      let compactUl = document.createElement('ul');
+      const normalUl = document.createElement('ul');
+      const compactUl = document.createElement('ul');
 
       for (value of dates) {
-        let normalLi = document.createElement('li');
+        const twitterLi = document.createElement('li');
         let dateString = quartzite.formatDate(value);
         normalLi.appendChild(document.createTextNode(dateString));
         normalUl.appendChild(normalLi);
 
-        let compactLi = document.createElement('li');
+        const compactLi = document.createElement('li');
         dateString = quartzite.formatDate(value, 'short');
         compactLi.appendChild(document.createTextNode(dateString));
         compactUl.appendChild(compactLi);
