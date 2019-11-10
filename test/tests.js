@@ -9,14 +9,14 @@ describe('Quartzite', function() {
       assert.equal(quartzite.formatDate(new Date()), 'Just now');
     });
 
-    it('should contain "Yesterday at"', function() {
+    it('should return "Yesterday"', function() {
       let date = quartzite.dateByAdding('hours', new Date(), -24);
-      assert.equal(quartzite.formatDate(date).includes('Yesterday at'), true);
+      assert.equal(quartzite.formatDate(date), 'Yesterday');
     });
 
-    it('should contain "Tomorrow at"', function() {
+    it('should return "Tomorrow"', function() {
       let date = quartzite.dateByAdding('hours', new Date(), 24);
-      assert.equal(quartzite.formatDate(date).includes('Tomorrow at'), true);
+      assert.equal(quartzite.formatDate(date), 'Tomorrow');
     });
 
     it('should return "30 seconds ago"', function() {

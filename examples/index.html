@@ -29,11 +29,9 @@
         </div>
 
         <div class="row">
-          <div class="col dates-list-compact"></div>
-          <div class="col dates-list-normal"></div>
-          <div class="col">
-            3 of 3
-          </div>
+          <div class="col dates-list-short"></div>
+          <div class="col dates-list-medium"></div>
+          <div class="col dates-list-long"></div>
         </div>
     </div>
 
@@ -58,23 +56,30 @@
         quartzite.dateByAdding('days', date, 400)
       ];
 
-      const normalUl = document.createElement('ul');
-      const compactUl = document.createElement('ul');
+      const shortUl = document.createElement('ul');
+      const mediumUl = document.createElement('ul');
+      const longUl = document.createElement('ul');
 
       for (value of dates) {
-        const normalLi = document.createElement('li');
-        let dateString = quartzite.formatDate(value);
-        normalLi.appendChild(document.createTextNode(dateString));
-        normalUl.appendChild(normalLi);
+        const shortLi = document.createElement('li');
+        let dateString = quartzite.formatDate(value, 'short');
+        shortLi.appendChild(document.createTextNode(dateString));
+        shortUl.appendChild(shortLi);
 
-        const compactLi = document.createElement('li');
-        dateString = quartzite.formatDate(value, 'short');
-        compactLi.appendChild(document.createTextNode(dateString));
-        compactUl.appendChild(compactLi);
+        const mediumLi = document.createElement('li');
+        dateString = quartzite.formatDate(value, 'medium');
+        mediumLi.appendChild(document.createTextNode(dateString));
+        mediumUl.appendChild(mediumLi);
+
+        const longLi = document.createElement('li');
+        dateString = quartzite.formatDate(value, 'long');
+        longLi.appendChild(document.createTextNode(dateString));
+        longUl.appendChild(longLi);
       }
 
-      document.querySelector('.dates-list-normal').appendChild(normalUl);
-      document.querySelector('.dates-list-compact').appendChild(compactUl);
+      document.querySelector('.dates-list-short').appendChild(shortUl);
+      document.querySelector('.dates-list-medium').appendChild(mediumUl);
+      document.querySelector('.dates-list-long').appendChild(longUl);
     </script>
   </body>
 </html>

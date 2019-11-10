@@ -92,3 +92,26 @@ export function is12HourClock() {
   const string = new Date().toLocaleTimeString();
   return string.match(regex) !== null;
 }
+
+/**
+ * Gets order suffix from a given number
+ * @returns {string}
+ */
+export function getSuffix(number) {
+  const last = number % 10;
+  let suffix = '';
+  switch (last) {
+  case 1:
+    suffix = 'st';
+    break;
+  case 2:
+    suffix = 'nd';
+    break;
+  case 3:
+    suffix = 'rd';
+    break;
+  default:
+    suffix = 'th';
+  }
+  return suffix;
+}
