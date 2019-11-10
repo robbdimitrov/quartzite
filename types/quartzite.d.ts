@@ -1,4 +1,4 @@
-type StyleKey = 'short' | 'medium' | 'long' | 'full';
+type StyleKey = 'short' | 'medium' | 'long';
 type TypeKey = 'days' | 'hours' | 'minutes' | 'seconds';
 
 export as namespace quartzite;

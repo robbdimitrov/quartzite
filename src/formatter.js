@@ -2,18 +2,28 @@
 
 import { months, monthsShort, weekDays } from './constants';
 import {
-  pluralize, difference, isSameWeek, numberFormat
+  pluralize, difference, isSameWeek, numberFormat, is12HourClock
 } from './utils';
 
 /**
- * Returns time string with format hh:mm
+ * Returns time string with format hh:mm {AM/PM}
+ * @returns {string}
  */
-function timeFormat(date) {
-  return `${numberFormat(date.getHours())}:${numberFormat(date.getMinutes())}`;
+export function timeFormat(date) {
+  const hours = date.getHours();
+  const minutes = numberFormat(date.getMinutes());
+
+  if (is12HourClock()) {
+    const period = hours < 12 ? 'AM' : 'PM';
+    return `${hours % 12 || 12}:${minutes} ${period}`;
+  }
+
+  return `${numberFormat(hours)}:${minutes}`;
 }
 
 /**
  * Returns date string with month and day
+ * @returns {string}
  */
 export function monthDateFormat(date, style) {
   if (style === 'short') {
@@ -24,6 +34,7 @@ export function monthDateFormat(date, style) {
 
 /**
  * Returns date string with year
+ * @returns {string}
  */
 export function yearDateFormat(date, style) {
   if (style === 'short') {
@@ -85,7 +96,7 @@ export function timeDifference(now, date, style = 'normal') {
  * @param {Date} now - The relative date used for comprison
  * @param {Date} date - The date to format
  * @param {string} style - The style of the formatter
- *  Allowed options are 'normal' and 'short'. 'normal' is the default.
+ *  Allowed options are 'normal' and 'short'. 'normal' is the default
  * @returns {string}
  */
 export function dateDifference(now, date, style = 'normal') {
@@ -104,6 +115,28 @@ export function dateDifference(now, date, style = 'normal') {
     return `Tomorrow at ${timeFormat(date)}`;
   } else if (isSameWeek(now, date)) {
     return `${weekDays[date.getDay()]} at ${timeFormat(date)}`;
+  }
+
+  return yearDateFormat(date, style);
+}
+
+/**
+ * Formats a date by comparing with the current date
+ * @param {Date} date - The date to format
+ * @param {string} style - The style of the formatter
+ *  Allowed options are 'normal' and 'short'. 'normal' is the default.
+ * @returns {string}
+ */
+export function formatDate(date, style = 'normal') {
+  let now = new Date();
+  let { days } = difference(now, date);
+
+  if (days < 1) {
+    return timeDifference(now, date, style);
+  } else if (days < 7) {
+    return dateDifference(now, date, style);
+  } else if (now.getFullYear() === date.getFullYear()) {
+    return monthDateFormat(date, style);
   }
 
   return yearDateFormat(date, style);
