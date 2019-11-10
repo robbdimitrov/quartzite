@@ -1,17 +1,19 @@
 'use strict';
 
-import { numberFormat, is12HourClock } from './utils';
+import { numberFormat } from './utils';
 import { difference } from './utils';
 
 /**
  * Returns time string with format hh:mm {AM/PM}
+ * @param {Date} date - The date to format
+ * @param {boolean} is12HourClock - Used to determine the time format
  * @returns {string}
  */
-export function timeFormat(date) {
+export function timeFormat(date, is12HourClock) {
   const hours = date.getHours();
   const minutes = numberFormat(date.getMinutes());
 
-  if (is12HourClock()) {
+  if (is12HourClock) {
     const period = hours < 12 ? 'AM' : 'PM';
     return `${hours % 12 || 12}:${minutes} ${period}`;
   }
@@ -22,11 +24,10 @@ export function timeFormat(date) {
 /**
  * Formats a date by comparing with the current date
  * @param {Date} date - The date to format
- * @param {string} style - The style of the formatter
- *  Allowed options are 'normal' and 'short'. 'normal' is the default.
+ * @param {object} style - The style of the formatter
  * @returns {string}
  */
-export function formatDate(date, style = 'medium') {
+export function formatDate(date, style) {
   const now = new Date();
   const { days } = difference(now, date);
 

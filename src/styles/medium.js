@@ -12,7 +12,7 @@ export function monthDateFormat(date) {
 }
 
 export function dayDateFormat(now, date) {
-  let isCurrent = now.getFullYear() === date.getFullYear()
+  const isCurrent = now.getFullYear() === date.getFullYear()
     && now.getMonth() === date.getMonth();
 
   if (isCurrent && now.getDate() === date.getDate()) {
@@ -29,7 +29,7 @@ export function dayDateFormat(now, date) {
 }
 
 export function timeDateFormat(now, date) {
-  let { days, hours, minutes, seconds } = difference(now, date);
+  const { days, hours, minutes, seconds } = difference(now, date);
 
   if (seconds < 5) {
     return 'Just now';

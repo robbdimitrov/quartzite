@@ -17,7 +17,7 @@ export function monthDateFormat(date) {
 }
 
 export function dayDateFormat(now, date) {
-  let isCurrent = now.getFullYear() === date.getFullYear()
+  const isCurrent = now.getFullYear() === date.getFullYear()
     && now.getMonth() === date.getMonth();
 
   if (isCurrent && now.getDate() === date.getDate()) {

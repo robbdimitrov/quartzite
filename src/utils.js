@@ -10,7 +10,7 @@
  * @returns {Date} A new date
  */
 export function dateByAdding(type, date, value) {
-  let nextDate = new Date(date);
+  const nextDate = new Date(date);
 
   switch (type) {
   case 'days':
@@ -37,10 +37,10 @@ export function dateByAdding(type, date, value) {
  *  hours, minutes and seconds
  */
 export function difference(date1, date2) {
-  let seconds = Math.round(Math.abs(date1 - date2) / 1000);
-  let minutes = Math.round(seconds / 60);
-  let hours = Math.round(minutes / 60);
-  let days = Math.round(hours / 24);
+  const seconds = Math.round(Math.abs(date1 - date2) / 1000);
+  const minutes = Math.round(seconds / 60);
+  const hours = Math.round(minutes / 60);
+  const days = Math.round(hours / 24);
 
   return {
     days,
@@ -57,9 +57,9 @@ export function difference(date1, date2) {
  * @returns {boolean}
  */
 export function isSameWeek(date1, date2) {
-  let weekStart = dateByAdding('days', date1, -date1.getDay());
+  const weekStart = dateByAdding('days', date1, -date1.getDay());
   weekStart.setHours(0, 0, 0);
-  let weekEnd = dateByAdding('days', date1, 6 - date1.getDay());
+  const weekEnd = dateByAdding('days', date1, 6 - date1.getDay());
   weekEnd.setHours(23, 59, 59);
   return (date2 >= weekStart && date2 <= weekEnd);
 }

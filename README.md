@@ -1,7 +1,7 @@
 # Quartzite
 
 Lightweight relative date/time formatter without external dependencies.
-The formatter offers two styles - *normal* and *short*. *Normal* produces the 
+The formatter offers two styles - *normal* and *short*. *Normal* produces the
 same date outputs as seen in Instagram and *short* is Twitter-like.
 
 ## Installation
@@ -23,13 +23,13 @@ Using cdn
 ```javascript
 import * as quartzite from 'quartzite';
 
-let date = new Date();
+const date = new Date();
 
 // Create date in the past
-let yesterday = quartzite.dateByAdding('hours', date, -25);
+const yesterday = quartzite.dateByAdding('hours', date, -25);
 
 // Create date in the future
-let someday = quartzite.dateByAdding('days', date, 5);
+const someday = quartzite.dateByAdding('days', date, 5);
 
 // Format date using normal style
 // Will return 'Just now', '5 hours ago', 'Tomorrow at 7:00'
