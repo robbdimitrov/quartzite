@@ -36,6 +36,6 @@ export function timeDateFormat(now, date) {
   return result;
 }
 
-export function dayDateFormat(_now, date) {
-  return monthDateFormat(date);
+export function dayDateFormat(now, date) {
+  return timeDateFormat(now, date);
 }

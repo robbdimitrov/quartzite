@@ -31,14 +31,18 @@ const yesterday = quartzite.dateByAdding('hours', date, -25);
 // Create date in the future
 const someday = quartzite.dateByAdding('days', date, 5);
 
-// Format date using normal style
-// Will return 'Just now', '5 hours ago', 'Tomorrow at 7:00'
+// Format date using medium style
+// Will return 'Just now', '5 hours ago', 'Yesterday'
 console.log(quartzite.formatDate(yesterday));
-console.log(quartzite.formatDate(someday, 'normal'));
+console.log(quartzite.formatDate(someday, 'medium'));
 
 // Format date using short style
 // Will return '20m', '2d', 'Feb 7', '8 Aug 2017'
 console.log(quartzite.formatDate(someday, 'short'));
+
+// Format date using long style
+// Will return 'Today, 20:15', 'Friday, 22:30', 'Tuesday, November 5th'
+console.log(quartzite.formatDate(someday, 'long'));
 ```
 
 ## License
