@@ -46,7 +46,7 @@
       const compactUl = document.createElement('ul');
 
       for (value of dates) {
-        const twitterLi = document.createElement('li');
+        const normalLi = document.createElement('li');
         let dateString = quartzite.formatDate(value);
         normalLi.appendChild(document.createTextNode(dateString));
         normalUl.appendChild(normalLi);

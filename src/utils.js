@@ -1,33 +1,6 @@
 'use strict';
 
-/**
- * Returns a date, which is the passed date with added time value
- * @param {string} type - The type of value to add to the passed date.
- *  Allowed options are 'days', 'hours', 'minutes' and 'seconds'.
- *  'seconds' is the default.
- * @param {Date} date - The reference date used to construct the resulting date
- * @param {number} value - The number of days/hours/seconds to add to the date
- * @returns {Date} A new date
- */
-export function dateByAdding(type, date, value) {
-  let nextDate = new Date(date);
-
-  switch (type) {
-    case 'days':
-      nextDate.setDate(date.getDate() + value);
-      break;
-    case 'hours':
-      nextDate.setHours(date.getHours() + value);
-      break;
-    case 'minutes':
-      nextDate.setMinutes(date.getMinutes() + value);
-      break;
-    default:
-      nextDate.setSeconds(date.getSeconds() + value);
-  }
-
-  return nextDate;
-}
+import { dateByAdding } from './index';
 
 /**
  * Calculates the time difference between two dates
@@ -74,4 +47,21 @@ export function isSameWeek(date1, date2) {
  */
 export function pluralize(number, singular, plural) {
   return `${number} ${number === 1 ? singular : plural}`;
+}
+
+/**
+ * Prepends zero in front of a number if the number is less than 10
+ */
+export function numberFormat(number) {
+  return ('0' + number).slice(-2);
+}
+
+/**
+ * Checks if the current system locale time is in AM/PM format.
+ * @returns {boolean}
+ */
+export function isAmPmFormat() {
+  const regex = /[APap][mM]/;
+  const string = new Date().toLocaleTimeString();
+  return string.match(regex) !== null;
 }
