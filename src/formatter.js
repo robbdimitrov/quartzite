@@ -1,23 +1,26 @@
 'use strict';
 
 import { numberFormat } from './utils';
-import { difference, is12HourClock } from './utils';
+import { difference } from './utils';
 
 /**
  * Returns time string with format hh:mm {AM/PM}
  * @param {Date} date - The date to format
+ * @param {string} format - The time format.
+ *  Can be '12h' or '24h'. '24h' is the default
  * @returns {string}
  */
-export function timeString(date) {
-  const hours = date.getHours();
-  const minutes = numberFormat(date.getMinutes());
+export function timeString(date, format = '24h') {
+  let hours = date.getHours();
+  const minutes = date.getMinutes();
+  let suffix = '';
 
-  if (is12HourClock(date)) {
-    const period = hours < 12 ? 'AM' : 'PM';
-    return `${hours % 12 || 12}:${minutes} ${period}`;
+  if (format === '12h') {
+    suffix = ' ' + (hours < 12 ? 'AM' : 'PM');
+    hours = hours % 12 || 12;
   }
 
-  return `${numberFormat(hours)}:${minutes}`;
+  return `${numberFormat(hours)}:${numberFormat(minutes)}${suffix}`;
 }
 
 /**
