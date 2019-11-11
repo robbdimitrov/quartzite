@@ -1,20 +1,7 @@
 'use strict';
 
-import {
-  formatDate as formatterFormatDate,
-  timeFormat as formatterTimeFormat
-} from './formatter';
-import { is12HourClock } from './utils';
+import { dateString as formatterDateString } from './formatter';
 import styles from './styles';
-
-/**
- * Returns time string with format hh:mm {AM/PM}
- * @param {Date} date - The date to format
- * @returns {string}
- */
-export function timeFormat(date) {
-  return formatterTimeFormat(date, is12HourClock());
-}
 
 /**
  * Formats a date by comparing with the current date
@@ -24,8 +11,9 @@ export function timeFormat(date) {
  *  'medium' is the default
  * @returns {string}
  */
-export function formatDate(date, style = 'medium') {
-  return formatterFormatDate(date, styles[style]);
+export function dateString(date, style = 'medium') {
+  return formatterDateString(date, styles[style]);
 }
 
 export { dateByAdding } from './utils';
+export { timeString } from './formatter';

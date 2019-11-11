@@ -62,17 +62,17 @@
 
       for (value of dates) {
         const shortLi = document.createElement('li');
-        let dateString = quartzite.formatDate(value, 'short');
+        let dateString = quartzite.dateString(value, 'short');
         shortLi.appendChild(document.createTextNode(dateString));
         shortUl.appendChild(shortLi);
 
         const mediumLi = document.createElement('li');
-        dateString = quartzite.formatDate(value, 'medium');
+        dateString = quartzite.dateString(value, 'medium');
         mediumLi.appendChild(document.createTextNode(dateString));
         mediumUl.appendChild(mediumLi);
 
         const longLi = document.createElement('li');
-        dateString = quartzite.formatDate(value, 'long');
+        dateString = quartzite.dateString(value, 'long');
         longLi.appendChild(document.createTextNode(dateString));
         longUl.appendChild(longLi);
       }

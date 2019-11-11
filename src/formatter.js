@@ -1,19 +1,18 @@
 'use strict';
 
 import { numberFormat } from './utils';
-import { difference } from './utils';
+import { difference, is12HourClock } from './utils';
 
 /**
  * Returns time string with format hh:mm {AM/PM}
  * @param {Date} date - The date to format
- * @param {boolean} is12HourClock - Used to determine the time format
  * @returns {string}
  */
-export function timeFormat(date, is12HourClock) {
+export function timeString(date) {
   const hours = date.getHours();
   const minutes = numberFormat(date.getMinutes());
 
-  if (is12HourClock) {
+  if (is12HourClock(date)) {
     const period = hours < 12 ? 'AM' : 'PM';
     return `${hours % 12 || 12}:${minutes} ${period}`;
   }
@@ -27,7 +26,7 @@ export function timeFormat(date, is12HourClock) {
  * @param {object} style - The style of the formatter
  * @returns {string}
  */
-export function formatDate(date, style) {
+export function dateString(date, style) {
   const now = new Date();
   const { days } = difference(now, date);
 

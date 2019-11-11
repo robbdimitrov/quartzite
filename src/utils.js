@@ -87,9 +87,9 @@ export function numberFormat(number) {
  * Checks if the current system locale time is in 24-hour clock format
  * @returns {boolean}
  */
-export function is12HourClock() {
+export function is12HourClock(date) {
   const regex = /[APap][mM]/;
-  const string = new Date().toLocaleTimeString();
+  const string = date.toLocaleTimeString();
   return string.match(regex) !== null;
 }
 

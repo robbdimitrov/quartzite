@@ -1,7 +1,7 @@
 'use strict';
 
 import { months, weekDays } from '../constants';
-import { timeFormat } from '../formatter';
+import { timeString } from '../formatter';
 import { getSuffix, isSameWeek } from '../utils';
 
 export function yearDateFormat(date) {
@@ -21,13 +21,13 @@ export function dayDateFormat(now, date) {
     && now.getMonth() === date.getMonth();
 
   if (isCurrent && now.getDate() === date.getDate()) {
-    return `Today, ${timeFormat(date)}`;
+    return `Today, ${timeString(date)}`;
   } else if (isCurrent && (now.getDate() - 1) === date.getDate()) {
-    return `Yesterday, ${timeFormat(date)}`;
+    return `Yesterday, ${timeString(date)}`;
   } else if (isCurrent && (now.getDate() + 1) === date.getDate()) {
-    return `Tomorrow, ${timeFormat(date)}`;
+    return `Tomorrow, ${timeString(date)}`;
   } else if (isSameWeek(now, date)) {
-    return `${weekDays[date.getDay()]}, ${timeFormat(date)}`;
+    return `${weekDays[date.getDay()]}, ${timeString(date)}`;
   }
 
   return monthDateFormat(date);
