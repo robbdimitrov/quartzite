@@ -1,8 +1,7 @@
 # Quartzite
 
-Lightweight relative date/time formatter without external dependencies.
-The formatter offers two styles - *normal* and *short*. *Normal* produces the
-same date outputs as seen in Instagram and *short* is Twitter-like.
+Lightweight relative date/time formatter without external dependencies.  
+The formatter offers three styles - `short`, `medium` and `long`.
 
 ## Styles
 
