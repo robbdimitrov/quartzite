@@ -5,34 +5,57 @@
     <title>Relative Date</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-      crossorigin="anonymous"
-    >
+
+    <style type="text/css">
+      .title {
+        text-align: center;
+        margin-top: 30px;
+      }
+
+      .container {
+        display: flex;
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .container .item {
+        flex: 1;
+      }
+
+      .container ul {
+        padding: 0;
+        list-style-type: none;
+      }
+
+      li {
+        margin-bottom: 0.5em;
+        text-align: center;
+      }
+
+      .item h3 {
+        text-align: center;
+      }
+    </style>
   </head>
   <body>
+    <h1 class="title">Relative date formats</h1>
+
     <div class="container">
-        <h1>Relative date formats</h1>
+      <div class="item">
+        <h3>Short</h3>
+        <div class="dates-list-short"></div>
+      </div>
 
-        <div class="row">
-          <div class="col">
-            <h5>Short</h5>
-          </div>
-          <div class="col">
-            <h5>Medium</h5>
-          </div>
-          <div class="col">
-            <h5>Long</h5>
-          </div>
-        </div>
+      <div class="item">
+        <h3>Medium</h3>
+        <div class="dates-list-medium"></div>
+      </div>
 
-        <div class="row">
-          <div class="col dates-list-short"></div>
-          <div class="col dates-list-medium"></div>
-          <div class="col dates-list-long"></div>
-        </div>
+      <div class="item">
+        <h3>Long</h3>
+        <div class="dates-list-long"></div>
+      </div>
     </div>
 
     <script src="quartzite.js"></script>
