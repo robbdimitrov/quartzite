@@ -35,30 +35,50 @@ Using cdn
 <script src="https://unpkg.com/quartzite/dist/quartzite.js"></script>
 ```
 
-## Usage
+## Example
+
+Importing as ES6 module
 
 ```javascript
 import * as quartzite from 'quartzite';
+```
 
+or using CommonJS
+
+```javascript
+const quartzite = require('quartzite');
+```
+
+Create date in the past
+
+```javascript
 const date = new Date();
-
-// Create date in the past
 const yesterday = quartzite.dateByAdding('hours', date, -25);
+```
 
-// Create date in the future
+Create date in the future
+
+```javascript
+const date = new Date();
 const someday = quartzite.dateByAdding('days', date, 5);
+```
 
-// Format date using medium style
-// Will return 'Just now', '5 hours ago', 'Yesterday'
-console.log(quartzite.dateString(yesterday));
+Format date using `medium` style
+
+```javascript
+console.log(quartzite.dateString(yesterday)); // Medium is the default option
 console.log(quartzite.dateString(someday, 'medium'));
+```
 
-// Format date using short style
-// Will return '20m', '2d', 'Feb 7', '8 Aug 2017'
+Format date using `short` style
+
+```javascript
 console.log(quartzite.dateString(someday, 'short'));
+```
 
-// Format date using long style
-// Will return 'Today, 20:15', 'Friday, 22:30', 'Tuesday, November 5th'
+Format date using `long` style
+
+```javascript
 console.log(quartzite.dateString(someday, 'long'));
 ```
 
