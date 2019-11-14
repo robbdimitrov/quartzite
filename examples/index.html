@@ -3,32 +3,67 @@
   <head>
     <meta charset="utf-8">
     <title>Relative Date</title>
-    <style>
-      .dates-list-normal,
-      .dates-list-compact {
-        width: 200px;
-        display: inline-block;
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style type="text/css">
+      .title {
+        text-align: center;
+        margin-top: 30px;
+      }
+
+      .container {
+        display: flex;
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .container .item {
+        flex: 1;
+      }
+
+      .container ul {
+        padding: 0;
+        list-style-type: none;
+      }
+
+      li {
+        margin-bottom: 0.5em;
+        text-align: center;
+      }
+
+      .item h3 {
+        text-align: center;
       }
     </style>
   </head>
   <body>
+    <h1 class="title">Relative date formats</h1>
+
     <div class="container">
-        <div>
-            <h1>Relative date formats</h1>
-        </div>
+      <div class="item">
+        <h3>Short</h3>
+        <div class="dates-list-short"></div>
+      </div>
 
-        <br />
+      <div class="item">
+        <h3>Medium</h3>
+        <div class="dates-list-medium"></div>
+      </div>
 
-        <div class="dates-list-normal">Normal:</div>
-        <div class="dates-list-compact">Compact:</div>
+      <div class="item">
+        <h3>Long</h3>
+        <div class="dates-list-long"></div>
+      </div>
     </div>
 
     <script src="quartzite.js"></script>
 
     <script>
-      let date = new Date();
+      const date = new Date();
 
-      let dates = [
+      const dates = [
         quartzite.dateByAdding('seconds', date, -2),
         quartzite.dateByAdding('seconds', date, -25),
         quartzite.dateByAdding('minutes', date, -30),
@@ -44,23 +79,30 @@
         quartzite.dateByAdding('days', date, 400)
       ];
 
-      let normalUl = document.createElement('ul');
-      let compactUl = document.createElement('ul');
+      const shortUl = document.createElement('ul');
+      const mediumUl = document.createElement('ul');
+      const longUl = document.createElement('ul');
 
       for (value of dates) {
-        let normalLi = document.createElement('li');
-        let dateString = quartzite.formatDate(value);
-        normalLi.appendChild(document.createTextNode(dateString));
-        normalUl.appendChild(normalLi);
+        const shortLi = document.createElement('li');
+        let dateString = quartzite.dateString(value, 'short');
+        shortLi.appendChild(document.createTextNode(dateString));
+        shortUl.appendChild(shortLi);
 
-        let compactLi = document.createElement('li');
-        dateString = quartzite.formatDate(value, 'short');
-        compactLi.appendChild(document.createTextNode(dateString));
-        compactUl.appendChild(compactLi);
+        const mediumLi = document.createElement('li');
+        dateString = quartzite.dateString(value, 'medium');
+        mediumLi.appendChild(document.createTextNode(dateString));
+        mediumUl.appendChild(mediumLi);
+
+        const longLi = document.createElement('li');
+        dateString = quartzite.dateString(value, 'long');
+        longLi.appendChild(document.createTextNode(dateString));
+        longUl.appendChild(longLi);
       }
 
-      document.querySelector('.dates-list-normal').appendChild(normalUl);
-      document.querySelector('.dates-list-compact').appendChild(compactUl);
+      document.querySelector('.dates-list-short').appendChild(shortUl);
+      document.querySelector('.dates-list-medium').appendChild(mediumUl);
+      document.querySelector('.dates-list-long').appendChild(longUl);
     </script>
   </body>
 </html>
